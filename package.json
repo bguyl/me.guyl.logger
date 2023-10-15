@@ -1,0 +1,8 @@
+{
+    "name": "me.guyl.logger",
+    "description": "A better logger for Unity",
+    "version": "0.0.0",
+    "unity": "2022.2",
+    "displayName": "GLogger",
+    "dependencies": {}
+  }
