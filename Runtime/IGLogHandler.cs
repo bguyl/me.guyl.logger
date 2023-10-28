@@ -27,13 +27,9 @@
 
         bool IsLogAllowed(string channel, GLogType logType)
         {
-            if (LogEnabled &&
-                AllowedLogTypes.HasFlag(logType) &&
-                AllowedChannels.Contains(channel)
-            )
-            { return true; }
-
-            return false;
+            return LogEnabled &&
+                    AllowedLogTypes.HasFlag(Convert.ToGLogTypeFlag(logType)) &&
+                    AllowedChannels.Contains(channel);
         }
     }
 }

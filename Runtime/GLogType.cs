@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
-
-namespace Guyl.Logger
+﻿namespace Guyl.Logger
 {
+    using System;
+
     /// <summary>
     /// Logging severity levels.
     /// </summary>
@@ -23,6 +22,9 @@ namespace Guyl.Logger
         VeryVerbose = 8
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     [Flags]
     public enum GLogTypeFlag
     {
@@ -38,15 +40,5 @@ namespace Guyl.Logger
         Trace = 1 << 7,
         VeryVerbose = 1 << 8,
         All = ~0
-    }
-    
-    public static class Convert {
-        public static LogType ToLogType(GLogType gLogType)
-        {
-            if (Enum.IsDefined(typeof(LogType), gLogType)) return (LogType)gLogType;
-            return LogType.Log;
-        }
-
-        public static GLogType ToGLogType(LogType logType) => (GLogType)logType;
     }
 }

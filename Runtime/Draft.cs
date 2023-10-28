@@ -302,5 +302,26 @@
 		// 	if ( !this.IsLogTypeAllowed( gLogType ) ) return;
 		// 	this.logHandler.LogFormat( (UnityEngine.LogType) gLogType, context, format, args );
 		// }
+		
+		#region Log
+		// [HideInCallstack]
+		// public static void Log(object message)
+		// {
+		//     GLogHandler.LogFormat(GLogType.Log, K.DefaultChan, null, "{0}", null, LogOption.None, message);
+		// }
+		//
+		// [HideInCallstack]
+		// public new static void Log(object message, Object context)
+		// {
+		//     GLogHandler.LogFormat(GLogType.Log, K.DefaultChan, context, "{0}", null, LogOption.None, message);
+		// }
+		//
+		// [HideInCallstack]
+		// public static void Log(string channel, object message, Object context = null, object caller = null, LogOption logOptions = LogOption.None)
+		// {
+		//     GLogHandler.LogFormat(GLogType.Log, channel, context, "{0}", caller, logOptions, message);
+		// }
+		#endregion Log
+
     }
 }

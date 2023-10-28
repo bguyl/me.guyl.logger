@@ -21,12 +21,12 @@
         private static void InitializeOnLoad()
         {
             GLogHandler logHandler = new GLogHandler();
-            GDebug.DefaultUnityLogHandler = Debug.unityLogger.logHandler;
+            GDebug.DefaultUnityLogHandler = UnityEngine.Debug.unityLogger.logHandler;
             GDebug.GLogHandler = logHandler;
 
             if (Settings.OverrideDebugLogger)
             {
-                Debug.unityLogger.logHandler = logHandler;
+                UnityEngine.Debug.unityLogger.logHandler = logHandler;
             }
         }
     }

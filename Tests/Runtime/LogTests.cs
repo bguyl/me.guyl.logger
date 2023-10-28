@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using UnityEngine;
 
 namespace Guyl.Logger.Tests.Runtime
@@ -29,16 +30,25 @@ namespace Guyl.Logger.Tests.Runtime
 			const string message = "This is a test message";
 			Exception exception = new Exception("Test exception");
 			
-			GDebug.LogVeryVerbose(message);
-			GDebug.LogTrace(message);
-			GDebug.LogDebug(message);
-			GDebug.LogInfo(message);
-			GDebug.Log(message);
-			GDebug.LogWarning(message);
-			GDebug.LogError(message);
-			GDebug.LogCritical(message);
-			GDebug.LogAssert(message);
+			GDebug.LogVeryVerbose("This is a VeryVerbose message");
+			GDebug.LogTrace("This is a Trace message");
+			GDebug.LogDebug("This is a Debug message");
+			GDebug.LogInfo("This is a Info message");
+			GDebug.Log("This is a Log message");
+			// GDebug.LogWarning("This is a Warning message");
+			
+			GDebug.LogWarningFormat("This is a Warning {0} message", "Foobar");
+			
+			GDebug.LogError("This is a Error message");
+			GDebug.LogCritical("This is a Critical message");
+			GDebug.LogAssertion("This is a Assertion message");
 			GDebug.LogException(exception);
+			
+			UnityEngine.Debug.Log("Vanilla: This is a Log message");
+			UnityEngine.Debug.LogWarning("Vanilla:  is a Warning message");
+			UnityEngine.Debug.LogError("Vanilla: This is a Error message");
+			UnityEngine.Debug.LogAssertion("Vanilla:  is a Assertion message");
+			UnityEngine.Debug.LogException(exception);
 		}
 		
 		[Test]
@@ -52,12 +62,12 @@ namespace Guyl.Logger.Tests.Runtime
 			GDebug.LogTrace(logChan, message);
 			GDebug.LogDebug(logChan, message);
 			GDebug.LogInfo(logChan, message);
-			GDebug.Log(logChan, message);
-			GDebug.Log(message, new GameObject());
-			GDebug.LogWarning(logChan, message);
-			GDebug.LogError(logChan, message);
+			// GDebug.Log(logChan, message);
+			// GDebug.Log(message, new GameObject());
+			GDebug.LogWarn(logChan, message);
+			GDebug.LogErr(logChan, message);
 			GDebug.LogCritical(logChan, message);
-			GDebug.LogAssert(message);
+			GDebug.LogAssertion(message);
 			GDebug.LogException(exception);
 		}
 		
@@ -68,11 +78,29 @@ namespace Guyl.Logger.Tests.Runtime
 			const string message = "This is a test message";
 			Exception exception = new Exception("Test exception");
 
-			Debug.Log(message);
-			Debug.LogWarning(message);
-			Debug.LogError(message);
-			Debug.LogAssertion(message);
-			Debug.LogException(exception);
+			Assembly coreAssembly = Assembly.GetAssembly( typeof(UnityEngine.Debug) );
+			Type debugLogHandler = coreAssembly.GetType( "UnityEngine.DebugLogHandler" );
+			
+			MethodInfo logFormatMethodInfo = debugLogHandler.GetMethod("LogFormat", new Type[]
+			{
+				typeof(LogType),
+				typeof(LogOption),
+				typeof(UnityEngine.Object),
+				typeof(String),
+				typeof(System.Object[])
+			});
+			logFormatMethodInfo.Invoke(UnityEngine.Debug.unityLogger.logHandler, new object[] { LogType.Warning, LogOption.None, null, "format", new object[] {} });
+			
+			// Debug.Log( debugLogHandler );
+			
+			
+			// Debug.Log( Assembly.GetAssembly( typeof(Debug) ) );
+			
+			// Debug.Log(message);
+			// Debug.LogWarning(message);
+			// Debug.LogError(message);
+			// Debug.LogAssertion(message);
+			// Debug.LogException(exception);
 		}
 
 		public void Signatures()
