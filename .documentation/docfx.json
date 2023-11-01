@@ -37,7 +37,13 @@
     },
     "sitemap":
     {
-      "baseUrl": "https://bguyl.github.io/unity-glogger"
+      "baseUrl": "https://bguyl.github.io/unity-glogger",
+      "changefreq": "weekly",
+      "fileOptions": {
+          "api/*": {
+              "changefreq": "daily"
+          }
+      }
     },
     "content": [
       {
