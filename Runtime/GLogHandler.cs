@@ -31,7 +31,7 @@
 		/// <summary>
 		/// 
 		/// </summary>
-		public List<string> AllowedChannels { get; }
+		public HashSet<string> MutedChannels { get; }
 		
 		/// <summary>
 		/// 
@@ -54,14 +54,15 @@
 		#endregion Properties
 
 		#region Constructors
+
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="allowedChannels"></param>
+		/// <param name="mutedChannels"></param>
 		/// <param name="allowedLogTypes"></param>
-		public GLogHandler(List<string> allowedChannels = null, GLogTypeFlag allowedLogTypes = GLogTypeFlag.All)
+		public GLogHandler(HashSet<string> mutedChannels = null, GLogTypeFlag allowedLogTypes = GLogTypeFlag.All)
 		{
-			AllowedChannels = allowedChannels ?? new List<string>() { K.DefaultChan };
+			MutedChannels = mutedChannels ?? new HashSet<string>();
 			AllowedLogTypes = allowedLogTypes;
 			
 #if UNITY_EDITOR

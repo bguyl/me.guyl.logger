@@ -8,7 +8,7 @@
     /// </summary>
     public interface IGLogHandler : ILogHandler
     {
-        public List<string> AllowedChannels { get; }
+        public HashSet<string> MutedChannels { get; }
         public GLogTypeFlag AllowedLogTypes { get; set; }
         
         public bool LogEnabled { get; set; }
@@ -29,7 +29,7 @@
         {
             return LogEnabled &&
                     AllowedLogTypes.HasFlag(Convert.ToGLogTypeFlag(logType)) &&
-                    AllowedChannels.Contains(channel);
+                    !MutedChannels.Contains(channel);
         }
     }
 }
