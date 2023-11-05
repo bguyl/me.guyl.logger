@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee42554892984a429bfe122e81802155, type: 3}
+  m_Name: New GLogger Settings
+  m_EditorClassIdentifier: 
+  _overrideDebugLogger: 1
+  _logFormatters:
+  - rid: 6636964574236246016
+  - rid: 6636964574236246017
+  - rid: 6636964574236246018
+  - rid: 6636964574236246019
+  - rid: 6636964574299947008
+  _thisFormatter:
+    rid: 6636964574299947008
+  references:
+    version: 2
+    RefIds:
+    - rid: 6636964574236246016
+      type: {class: UnityEditorLogFormatter, ns: Guyl.Logger, asm: Guyl.Logger.Runtime}
+      data: 
+    - rid: 6636964574236246017
+      type: {class: UnityEditorLogFormatter, ns: Guyl.Logger, asm: Guyl.Logger.Runtime}
+      data: 
+    - rid: 6636964574236246018
+      type: {class: UnityEditorLogFormatter, ns: Guyl.Logger, asm: Guyl.Logger.Runtime}
+      data: 
+    - rid: 6636964574236246019
+      type: {class: UnityEditorLogFormatter, ns: Guyl.Logger, asm: Guyl.Logger.Runtime}
+      data: 
+    - rid: 6636964574299947008
+      type: {class: UnityEditorLogFormatter, ns: Guyl.Logger, asm: Guyl.Logger.Runtime}
+      data: 

@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/me.guyl.logger/Editor/GConsole/GConsole.uss?fileID=7433441132597879392&amp;guid=d3a95787a7f44dc799724931501f1887&amp;type=3#GConsole" />
+    <ui:VisualElement name="Root" style="min-height: 100%; min-width: 100%;">
+        <uie:Toolbar name="Toolbar" style="justify-content: space-between;">
+            <ui:VisualElement name="ToolbarLeft">
+                <uie:ToolbarMenu name="ClearMenu" text="Clear " display-tooltip-when-elided="true" />
+                <uie:ToolbarToggle name="CollapseToggle" text="Collapse" display-tooltip-when-elided="true" />
+                <uie:ToolbarToggle name="ErrorPauseToggle" text="Error Pause" display-tooltip-when-elided="true" />
+                <uie:ToolbarMenu name="OutputMenu" text="Editor" display-tooltip-when-elided="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ToolbarRight">
+                <uie:ToolbarSearchField focusable="true" />
+                <uie:ToolbarToggle name="LogNumberToggle" class="g-number-toggle">
+                    <ui:Image style="--unity-image: resource(&apos;console.infoicon.sml&apos;);" />
+                    <ui:Label text="0" />
+                </uie:ToolbarToggle>
+                <uie:ToolbarToggle name="WarningNumberToggle" class="g-number-toggle">
+                    <ui:Image style="--unity-image: resource(&apos;console.warnicon.sml&apos;);" />
+                    <ui:Label text="0" />
+                </uie:ToolbarToggle>
+                <uie:ToolbarToggle name="ErrorNumberToggle" class="g-number-toggle">
+                    <ui:Image style="--unity-image: resource(&apos;console.erroricon.sml&apos;);" />
+                    <ui:Label text="0" />
+                </uie:ToolbarToggle>
+            </ui:VisualElement>
+        </uie:Toolbar>
+        <ui:TwoPaneSplitView orientation="Vertical" name="TwoPaneSplitView" style="align-items: auto; flex-shrink: 0; width: auto; height: auto; position: relative; left: 0; top: 0; right: 0; bottom: 0;">
+            <ui:ListView focusable="true" style="height: auto; min-height: 75px;" />
+            <ui:ListView focusable="true" style="min-height: 75px;" />
+        </ui:TwoPaneSplitView>
+    </ui:VisualElement>
+</ui:UXML>

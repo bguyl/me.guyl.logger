@@ -37,7 +37,9 @@
 		/// 
 		/// </summary>
 		public GLogTypeFlag AllowedLogTypes { get; set; }
-		
+
+		public List<IGLogFormatter> LogFormatters { get; }
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -60,12 +62,17 @@
 		/// </summary>
 		/// <param name="mutedChannels"></param>
 		/// <param name="allowedLogTypes"></param>
-		public GLogHandler(HashSet<string> mutedChannels = null, GLogTypeFlag allowedLogTypes = GLogTypeFlag.All)
+		/// <param name="formatters"></param>
+		public GLogHandler(HashSet<string> mutedChannels = null, GLogTypeFlag allowedLogTypes = GLogTypeFlag.All, List<IGLogFormatter> formatters = null)
 		{
 			MutedChannels = mutedChannels ?? new HashSet<string>();
 			AllowedLogTypes = allowedLogTypes;
+			LogFormatters = formatters ?? new List<IGLogFormatter>();
 			
 #if UNITY_EDITOR
+			// Retrieve the internal Unity DebugLogHandler.LogFormat method
+			// It allow us to use the `LogOption` parameter without using Debug.LogFormat, and thus, having the correct
+			// highlight on log message click 
 			Assembly coreAssembly = Assembly.GetAssembly( typeof(UnityEngine.Debug) );
 			if (coreAssembly == null)
 			{
@@ -127,7 +134,14 @@
 		public void LogFormat(GLogType logType, string channel, UnityEngine.Object context, string format, object caller, LogOption logOptions = LogOption.None, params object[] args)
 		{
 			if (!IGLogHandlerInterface.IsLogAllowed(channel, logType)) return;
-			
+
+			string message = format;
+			for (int i = 0; i < LogFormatters.Count; i++)
+			{
+				IGLogFormatter formatter = LogFormatters[i];
+				message = formatter.Format(logType, channel, context, format, caller, args);
+			}
+
 #if UNITY_EDITOR
 			if (FormatMethodInfo != null)
 			{
@@ -136,7 +150,7 @@
 					Convert.ToLogType(logType),
 					logOptions,
 					context,
-					FormatMessageForUnityConsole(logType, K.DefaultChan, context, format, caller, args),
+					message,
 					new object[] { }
 				});	
 			}
@@ -168,16 +182,24 @@
 		{
 			if (!IGLogHandlerInterface.IsLogAllowed(K.DefaultChan, Convert.ToGLogType(logType))) return;
 			
+			string message = format;
+			for (int i = 0; i < LogFormatters.Count; i++)
+			{
+				IGLogFormatter formatter = LogFormatters[i];
+				message = formatter.Format(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, args);
+			}
+			
 #if UNITY_EDITOR
 			if (FormatMethodInfo != null)
 			{
-				// FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
-				// {
-				// 	logType, LogOption.None, context, "{0}", new object[]
-				// 	{
-				// 		FormatMessageForUnityConsole(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, args)
-				// 	}
-				// });	
+				FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
+				{
+					logType,
+					LogOption.None,
+					context,
+					message,
+					new object[] { }
+				});	
 			}
 			else
 			{

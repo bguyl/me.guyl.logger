@@ -10,6 +10,7 @@
     {
         public HashSet<string> MutedChannels { get; }
         public GLogTypeFlag AllowedLogTypes { get; set; }
+        public List<IGLogFormatter> LogFormatters { get; }
         
         public bool LogEnabled { get; set; }
 
