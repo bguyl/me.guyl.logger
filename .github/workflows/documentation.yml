@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - main
+permissions:
+  id-token: write
+  pages: write
 jobs:
   generate_and_publish_docs:
     runs-on: ubuntu-latest
@@ -10,10 +13,11 @@ jobs:
     - uses: actions/checkout@master
     - name: Use README.md as index.md
       run: cp README.md ./.documentation/index.md
-    - uses: nunit/docfx-action@v2.4.0
-      name: Build Documentation
-      with:
-        args: .documentation/docfx.json
+    - uses: actions/setup-dotnet@v3
+    - name: Build Documentation
+      run: |
+        dotnet tool restore
+        dotnet docfx .documentation/docfx.json
     - name: Archive documentation artifacts
       uses: actions/upload-artifact@v3
       with:
