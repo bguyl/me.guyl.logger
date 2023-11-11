@@ -18,12 +18,13 @@ jobs:
       run: |
         dotnet tool restore
         dotnet docfx .documentation/docfx.json
+    - uses: actions/upload-artifact@v3
     - name: Archive documentation artifacts
-      uses: actions/upload-artifact@v3
       with:
         name: github-pages
         path: .documentation/_site
     - name: Publish Documentation on GitHub Pages
       uses: actions/deploy-pages@v2
+      id: deployment
       with:
         artifact_name: github-pages
