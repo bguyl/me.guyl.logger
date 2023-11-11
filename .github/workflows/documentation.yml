@@ -11,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - uses: actions/setup-dotnet@v3
     - name: Use README.md as index.md
       run: cp README.md ./.documentation/index.md
-    - uses: actions/setup-dotnet@v3
     - name: Build Documentation
       run: |
         dotnet tool restore
         dotnet docfx .documentation/docfx.json
-    - uses: actions/upload-artifact@v3
     - name: Archive documentation artifacts
+      uses: actions/upload-artifact@v3
       with:
         name: github-pages
         path: .documentation/_site
