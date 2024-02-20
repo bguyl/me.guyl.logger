@@ -37,9 +37,9 @@ namespace Guyl.Logger.Tests.Runtime
 			GDebug.Log("This is a Log message");
 			// GDebug.LogWarning("This is a Warning message");
 			
-			GDebug.LogWarningFormat("This is a Warning {0} message", "Foobar");
+			Debug.LogWarningFormat("This is a Warning {0} message", "Foobar");
 			
-			GDebug.LogError("This is a Error message");
+			Debug.LogError("This is a Error message");
 			GDebug.LogCritical("This is a Critical message");
 			GDebug.LogAssertion("This is a Assertion message");
 			GDebug.LogException(exception);
@@ -64,8 +64,8 @@ namespace Guyl.Logger.Tests.Runtime
 			GDebug.LogInfo(logChan, message);
 			// GDebug.Log(logChan, message);
 			// GDebug.Log(message, new GameObject());
-			GDebug.LogWarn(logChan, message);
-			GDebug.LogErr(logChan, message);
+			GDebug.LogWarning(logChan, message);
+			GDebug.LogError(logChan, message);
 			GDebug.LogCritical(logChan, message);
 			GDebug.LogAssertion(message);
 			GDebug.LogException(exception);

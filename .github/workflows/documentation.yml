@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-dotnet@v3
     - name: Use README.md as index.md
-      run: cp README.md ./.documentation/index.md
+      run: cp -f ./README.md ./.documentation/articles/index.md
     - name: Build Documentation
       run: |
         dotnet tool restore

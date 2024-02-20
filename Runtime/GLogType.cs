@@ -3,8 +3,11 @@
     using System;
 
     /// <summary>
-    /// Logging severity levels.
+    /// Logging severity levels
     /// </summary>
+    /// <remarks>
+    /// This type is compatible with <c><see cref="UnityEngine.LogType"/></c> and add new levels
+    /// </remarks>
     public enum GLogType
     {
         // Values compatible with Unity LogType
@@ -23,8 +26,11 @@
     }
 
     /// <summary>
-    /// 
+    /// Flags for filtering logging severity levels
     /// </summary>
+    /// <remarks>
+    /// This is mirroring <c><see cref="Guyl.Logger.GLogType"/></c>, but is useful for filtering levels
+    /// </remarks>
     [Flags]
     public enum GLogTypeFlag
     {

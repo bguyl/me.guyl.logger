@@ -32,8 +32,9 @@
     "globalMetadata":
     {
       "_appTitle": "Guyl's Unity Logger",
-      "_appFooter": "Example Unity documentation",
-      "_enableSearch": true
+      "_appFooter": "GLogger documentation 🧑‍💻",
+      "_enableSearch": true,
+      "_appLogoPath": "images/logo.png"
     },
     "sitemap":
     {
@@ -58,6 +59,12 @@
           "articles/**/toc.yml",
           "toc.yml",
           "*.md"
+        ]
+      },
+      {
+        "files": [
+          "index.md",
+          "toc.yml"
         ]
       }
     ],
