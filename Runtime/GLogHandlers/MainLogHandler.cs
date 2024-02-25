@@ -183,13 +183,13 @@
 		[HideInCallstack]
 		public void LogFormat( LogType logType, UnityEngine.Object context, string format, params object[] args )
 		{
-			if ( !IGLogHandlerInterface.IsLogAllowed( K.DefaultChan, Convert.ToGLogType(logType))) return;
+			if ( !IGLogHandlerInterface.IsLogAllowed( K.DEFAULT_CHAN, Convert.ToGLogType(logType))) return;
 			
 			string message = format;
 			for (int i = 0; i < LogFormatters.Count; i++)
 			{
 				IGLogFormatter formatter = LogFormatters[i];
-				message = formatter.Format(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, args);
+				message = formatter.Format(Convert.ToGLogType(logType), K.DEFAULT_CHAN, context, format, null, args);
 			}
 			
 #if UNITY_EDITOR
@@ -213,7 +213,7 @@
 			for (int i = 0; i < _logHandlers.Count; i++)
 			{
 				IGLogHandler logHandler = _logHandlers[i];
-				if (logHandler.IsLogAllowed(K.DefaultChan, Convert.ToGLogType(logType)))
+				if (logHandler.IsLogAllowed(K.DEFAULT_CHAN, Convert.ToGLogType(logType)))
 				{
 					logHandler.LogFormat(logType, context, format, args);
 				}

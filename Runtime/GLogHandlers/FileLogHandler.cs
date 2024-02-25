@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -8,7 +9,7 @@ namespace Guyl.Logger
 	/// <summary>
 	/// Log handler that logs messages to a file on Editor and Standalone platforms
 	/// </summary>
-	public class FileLogHandler : IGLogHandler
+	public class FileLogHandler : IGLogHandler, IDisposable
 	{
 		public string[] ChannelsIncludeFilters { get; }
 		public string[] ChannelsExcludeFilters { get; }
@@ -19,6 +20,8 @@ namespace Guyl.Logger
 
 		private readonly string _filename;
 
+		private readonly StreamWriter _streamWriter;
+
 		public FileLogHandler(string filename, IGLogFormatter[] logFormatters = null)
 		{
 			_filename = filename;
@@ -27,6 +30,9 @@ namespace Guyl.Logger
 			{
 				LogFormatters.AddRange(logFormatters);	
 			}
+
+			_streamWriter = new StreamWriter( Path.Combine( Application.persistentDataPath, filename ) );
+			_streamWriter.AutoFlush = true;
 		}
 
 		public FileLogHandler AppendFormatter(IGLogFormatter formatter)
@@ -43,7 +49,7 @@ namespace Guyl.Logger
 		
 		public void LogFormat( LogType logType, Object context, string format, params object[] args )
 		{
-			if (!IGLogHandlerInterface.IsLogAllowed(K.DefaultChan, Convert.ToGLogType( logType ))) return;
+			if (!IGLogHandlerInterface.IsLogAllowed(K.DEFAULT_CHAN, Convert.ToGLogType( logType ))) return;
 			//
 			// string message = format;
 			// for (int i = 0; i < LogFormatters.Count; i++)
@@ -69,6 +75,13 @@ namespace Guyl.Logger
 				IGLogFormatter formatter = LogFormatters[i];
 				message = formatter.Format(logType, channel, context, format, caller, args);
 			}
+
+			_streamWriter.WriteLine(message);
+		}
+
+		public void Dispose( )
+		{
+			_streamWriter.Dispose();
 		}
 	}
 }

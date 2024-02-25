@@ -17,19 +17,19 @@
         [HideInCallstack]
         public new static void LogFormat(string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Log, K.DefaultChan, null, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Log, K.DEFAULT_CHAN, null, format, null, LogOption.None, args);
         }
 
         [HideInCallstack]
         public new static void LogFormat(Object context, string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Log, K.DefaultChan, context, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Log, K.DEFAULT_CHAN, context, format, null, LogOption.None, args);
         }
 
         [HideInCallstack]
         public new static void LogFormat(LogType logType, LogOption logOptions, Object context, string format, params object[] args)
         {
-            MainLogHandler.LogFormat(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, logOptions, args);
+            MainLogHandler.LogFormat(Convert.ToGLogType(logType), K.DEFAULT_CHAN, context, format, null, logOptions, args);
         }
         
         [HideInCallstack]
@@ -43,19 +43,19 @@
         [HideInCallstack]
         public new static void LogWarning(object message, Object context = null)
         {
-            MainLogHandler.LogFormat(GLogType.Warning, K.DefaultChan, context, "{0}", null, LogOption.None, message);
+            MainLogHandler.LogFormat(GLogType.Warning, K.DEFAULT_CHAN, context, "{0}", null, LogOption.None, message);
         }
 
         [HideInCallstack]
         public new static void LogWarningFormat(string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Warning, K.DefaultChan, null, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Warning, K.DEFAULT_CHAN, null, format, null, LogOption.None, args);
         }
 
         [HideInCallstack]
         public new static void LogWarningFormat(Object context, string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Warning, K.DefaultChan, context, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Warning, K.DEFAULT_CHAN, context, format, null, LogOption.None, args);
         }
         
         [HideInCallstack]
@@ -69,19 +69,19 @@
         [HideInCallstack]
         public new static void LogError(object message, Object context = null)
         {
-            MainLogHandler.LogFormat(GLogType.Error, K.DefaultChan, context, "{0}", null, LogOption.None, message);
+            MainLogHandler.LogFormat(GLogType.Error, K.DEFAULT_CHAN, context, "{0}", null, LogOption.None, message);
         }
 
         [HideInCallstack]
         public new static void LogErrorFormat(string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Error, K.DefaultChan, null, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Error, K.DEFAULT_CHAN, null, format, null, LogOption.None, args);
         }
 
         [HideInCallstack]
         public new static void LogErrorFormat(Object context, string format, params object[] args)
         {
-            MainLogHandler.LogFormat(GLogType.Error, K.DefaultChan, context, format, null, LogOption.None, args);
+            MainLogHandler.LogFormat(GLogType.Error, K.DEFAULT_CHAN, context, format, null, LogOption.None, args);
         }
 
         [HideInCallstack]
@@ -117,7 +117,7 @@
         [HideInCallstack]
         public static void LogVeryVerbose(object message, Object context = null, object caller = null, LogOption logOptions = LogOption.NoStacktrace)
         {
-            MainLogHandler.LogFormat(GLogType.VeryVerbose, K.DefaultChan, context, "{0}", caller, logOptions, message);
+            MainLogHandler.LogFormat(GLogType.VeryVerbose, K.DEFAULT_CHAN, context, "{0}", caller, logOptions, message);
         }
         
         [HideInCallstack]
@@ -131,7 +131,7 @@
         [HideInCallstack]
         public static void LogTrace(object message, Object context = null, object caller = null, LogOption logOptions = LogOption.NoStacktrace)
         {
-            MainLogHandler.LogFormat(GLogType.Trace, K.DefaultChan, context, "{0}", caller, logOptions, message);
+            MainLogHandler.LogFormat(GLogType.Trace, K.DEFAULT_CHAN, context, "{0}", caller, logOptions, message);
         }
         
         [HideInCallstack]
@@ -145,7 +145,7 @@
         [HideInCallstack]
         public static void LogDebug(object message, Object context = null, object caller = null, LogOption logOptions = LogOption.None)
         {
-            MainLogHandler.LogFormat(GLogType.Debug, K.DefaultChan, context, "{0}", caller, logOptions, message);
+            MainLogHandler.LogFormat(GLogType.Debug, K.DEFAULT_CHAN, context, "{0}", caller, logOptions, message);
         }
         
         [HideInCallstack]
@@ -159,7 +159,7 @@
         [HideInCallstack]
         public static void LogInfo(object message, Object context = null, object caller = null, LogOption logOptions = LogOption.None)
         {
-            MainLogHandler.LogFormat(GLogType.Information, K.DefaultChan, context, "{0}", caller, logOptions, message);
+            MainLogHandler.LogFormat(GLogType.Information, K.DEFAULT_CHAN, context, "{0}", caller, logOptions, message);
         }
         
         [HideInCallstack]
@@ -173,7 +173,7 @@
         [HideInCallstack]
         public static void LogCritical(object message, Object context = null, object caller = null, LogOption logOptions = LogOption.None)
         {
-            MainLogHandler.LogFormat(GLogType.Critical, K.DefaultChan, context, "{0}", caller, logOptions, message);
+            MainLogHandler.LogFormat(GLogType.Critical, K.DEFAULT_CHAN, context, "{0}", caller, logOptions, message);
         }
 
         [HideInCallstack]

@@ -8,6 +8,6 @@
         /// <summary>
         /// The default log channel key 
         /// </summary>
-        [LogChannel] public const string DefaultChan = "Log";
+        [LogChannel] public const string DEFAULT_CHAN = "Log";
     }
 }
