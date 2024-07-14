@@ -1,4 +1,4 @@
-namespace Guyl.Logger.Editor
+namespace Guyl.GLogger.Editor
 {
     using UnityEngine;
     using UnityEngine.UIElements;

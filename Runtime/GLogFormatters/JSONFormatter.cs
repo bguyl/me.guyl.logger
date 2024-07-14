@@ -2,7 +2,7 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Guyl.Logger
+namespace Guyl.GLogger
 {
     /// <summary>
     /// The JSONFormatter class provides a method to format log messages in JSON format

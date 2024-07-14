@@ -1,8 +1,9 @@
 ﻿using System.Text;
+using UnityEditor;
 using UnityEngine.Windows;
 using Path = System.IO.Path;
 
-namespace Guyl.Logger
+namespace Guyl.GLogger
 {
     using UnityEngine;
 
@@ -25,8 +26,13 @@ namespace Guyl.Logger
         }
 #endif
 
+        [MenuItem(K.MENU_ITEM + "Initialize")]
         private static void InitializeOnLoad()
         {
+            if (Directory.Exists(Application.streamingAssetsPath) == false) {
+               Directory.CreateDirectory( Application.streamingAssetsPath );
+            }
+
             string path = Path.Combine(Application.streamingAssetsPath, "GLoggerConfig.json");
             // Debug.Log(path);
             if (!File.Exists(path))

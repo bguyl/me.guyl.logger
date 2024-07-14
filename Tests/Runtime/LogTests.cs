@@ -2,10 +2,10 @@
 using System.Reflection;
 using UnityEngine;
 
-namespace Guyl.Logger.Tests.Runtime
+namespace Guyl.GLogger.Tests.Runtime
 {
 	using NUnit.Framework;
-	using Guyl.Logger;
+	using GLogger;
 
 	public class LogTests
 	{

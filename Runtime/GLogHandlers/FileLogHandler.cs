@@ -4,7 +4,7 @@ using System.IO;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Guyl.Logger
+namespace Guyl.GLogger
 {
 	/// <summary>
 	/// Log handler that logs messages to a file on Editor and Standalone platforms

@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger
+﻿namespace Guyl.GLogger
 {
     using System;
     using UnityEngine;
@@ -8,7 +8,7 @@
         /// <summary>
         /// Converts a GLogType to an Unity LogType
         /// </summary>
-        /// <param name="gLogType">The <c><see cref="Guyl.Logger.GLogType"/></c> to convert</param>
+        /// <param name="gLogType">The <c><see cref="GLogType"/></c> to convert</param>
         /// <returns>The corresponding <c><see cref="UnityEngine.LogType"/></c></returns>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the GLogType conversion is not handled yet</exception>
         public static LogType ToLogType( GLogType gLogType )
@@ -41,7 +41,7 @@
         /// While a simple cast should be enough, use this method in case of future changes
         /// </remarks>
         /// <param name="logType">The <c><see cref="UnityEngine.LogType"/></c> to convert</param>
-        /// <returns>The corresponding <c><see cref="Guyl.Logger.GLogType"/></c></returns>
+        /// <returns>The corresponding <c><see cref="GLogType"/></c></returns>
         public static GLogType ToGLogType( LogType logType ) => ( GLogType )logType;
 
         public static GLogTypeFlag ToGLogTypeFlag(GLogType logType)

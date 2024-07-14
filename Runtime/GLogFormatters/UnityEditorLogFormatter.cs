@@ -2,7 +2,7 @@
 using System.Globalization;
 using Object = UnityEngine.Object;
 
-namespace Guyl.Logger
+namespace Guyl.GLogger
 {
     /// <summary>
     /// Example on how to format log messages for Unity Editor console

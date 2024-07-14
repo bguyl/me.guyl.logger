@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger
+﻿namespace Guyl.GLogger
 {
 	using System;
 	using System.Collections.Generic;

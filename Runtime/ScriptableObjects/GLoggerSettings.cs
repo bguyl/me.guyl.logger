@@ -1,10 +1,10 @@
-﻿namespace Guyl.Logger.ScriptableObjects
+﻿namespace Guyl.GLogger.ScriptableObjects
 {
     using System.Collections.Generic;
     using NaughtyAttributes;
     using UnityEngine;
 
-    [CreateAssetMenu(fileName = "New GLogger Settings", menuName = "Guyl/GLogger Settings")]
+    [CreateAssetMenu(fileName = "New GLogger Settings", menuName = K.CREATE_ASSET_MENU + "GLogger Settings")]
     public class GLoggerSettings : ScriptableObject
     {
         [SerializeField] private bool _overrideDebugLogger = true;

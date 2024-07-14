@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger.Editor
+﻿namespace Guyl.GLogger.Editor
 {
 	using UnityEngine;
 	using UnityEngine.UIElements;
@@ -9,7 +9,7 @@
 		[SerializeField]
 		private VisualTreeAsset _visualTreeAsset = default;
 		
-		[MenuItem( "Tools/GConsole" )]
+		[MenuItem( K.MENU_ITEM + "GConsole" )]
 		private static void ShowWindow( )
 		{
 			GConsole window = GetWindow<GConsole>();

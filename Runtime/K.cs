@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger
+﻿namespace Guyl.GLogger
 {
     /// <summary>
     /// This class store constants needed in the GLogger plugin
@@ -9,5 +9,8 @@
         /// The default log channel key 
         /// </summary>
         [LogChannel] public const string DEFAULT_CHAN = "Log";
+
+        public const string MENU_ITEM = "Tools/GLogger/";
+        public const string CREATE_ASSET_MENU = "GLogger/";
     }
 }

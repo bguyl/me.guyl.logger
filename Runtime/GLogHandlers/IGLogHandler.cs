@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Guyl.Logger
+namespace Guyl.GLogger
 {
     using System.Collections.Generic;
     using UnityEngine;

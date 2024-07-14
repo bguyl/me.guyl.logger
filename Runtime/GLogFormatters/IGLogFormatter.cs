@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger
+﻿namespace Guyl.GLogger
 {
     /// <summary>
     /// A GLogFormatter allows customization of log display

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
+using UnityEditor;
 using UnityEngine.UIElements;
 using Assembly = System.Reflection.Assembly;
 
-namespace Guyl.Logger.Editor
-{
-	using UnityEditor;
-
+namespace Guyl.GLogger.Editor {
 	public class TempSettingWindow : EditorWindow
 	{
 
@@ -22,7 +19,7 @@ namespace Guyl.Logger.Editor
 		private List<TempChanEntry> _chanEntries = new();
 		private MultiColumnListView listView;
 		
-		[UnityEditor.MenuItem( "Tools/GLogger Settings" )]
+		[MenuItem( K.MENU_ITEM + "GLogger Settings" )]
 		private static void ShowWindow( )
 		{
 			TempSettingWindow window = GetWindow<TempSettingWindow>();

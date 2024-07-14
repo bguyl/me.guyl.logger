@@ -1,4 +1,4 @@
-﻿namespace Guyl.Logger
+﻿namespace Guyl.GLogger
 {
     using System;
 
@@ -29,7 +29,7 @@
     /// Flags for filtering logging severity levels
     /// </summary>
     /// <remarks>
-    /// This is mirroring <c><see cref="Guyl.Logger.GLogType"/></c>, but is useful for filtering levels
+    /// This is mirroring <c><see cref="GLogType"/></c>, but is useful for filtering levels
     /// </remarks>
     [Flags]
     public enum GLogTypeFlag
