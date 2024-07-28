@@ -1,4 +1,6 @@
-﻿namespace Guyl.Logger
+﻿using InternalBridge;
+
+namespace Guyl.Logger
 {
 	using System;
 	using System.Collections.Generic;
@@ -44,12 +46,12 @@
 		public bool LogEnabled { get; set; } = true;
 
 		#region Statics
-#if UNITY_EDITOR
-		/// <summary>
-		/// 
-		/// </summary>
-		public static MethodInfo FormatMethodInfo { get; set; }
-#endif
+// #if UNITY_EDITOR
+// 		/// <summary>
+// 		/// 
+// 		/// </summary>
+// 		public static MethodInfo FormatMethodInfo { get; set; }
+// #endif
 		#endregion
 		#endregion Properties
 
@@ -63,31 +65,31 @@
 		{
 			AllowedChannels = allowedChannels ?? new List<string>() { K.DefaultChan };
 			AllowedLogTypes = allowedLogTypes;
-			
-#if UNITY_EDITOR
-			Assembly coreAssembly = Assembly.GetAssembly( typeof(UnityEngine.Debug) );
-			if (coreAssembly == null)
-			{
-				UnityEngine.Debug.LogWarning($"[{typeof(GLogHandler)}] Couldn't find Unity coreAssembly");
-				return;
-			}
 
-			Type debugLogHandlerType = coreAssembly.GetType( "UnityEngine.DebugLogHandler" );
-			if (debugLogHandlerType == null)
-			{
-				UnityEngine.Debug.LogWarning($"[{typeof(GLogHandler)}] Couldn't find DebugLogHandler type");
-				return;
-			}
-
-			FormatMethodInfo = debugLogHandlerType.GetMethod("LogFormat", new Type[]
-			{
-				typeof(LogType),
-				typeof(LogOption),
-				typeof(UnityEngine.Object),
-				typeof(String),
-				typeof(System.Object[])
-			});
-#endif
+			// #if UNITY_EDITOR
+			// 			Assembly coreAssembly = Assembly.GetAssembly( typeof(UnityEngine.Debug) );
+			// 			if (coreAssembly == null)
+			// 			{
+			// 				UnityEngine.Debug.LogWarning($"[{typeof(GLogHandler)}] Couldn't find Unity coreAssembly");
+			// 				return;
+			// 			}
+			//
+			// 			Type debugLogHandlerType = coreAssembly.GetType( "UnityEngine.DebugLogHandler" );
+			// 			if (debugLogHandlerType == null)
+			// 			{
+			// 				UnityEngine.Debug.LogWarning($"[{typeof(GLogHandler)}] Couldn't find DebugLogHandler type");
+			// 				return;
+			// 			}
+			//
+			// 			FormatMethodInfo = debugLogHandlerType.GetMethod("LogFormat", new Type[]
+			// 			{
+			// 				typeof(LogType),
+			// 				typeof(LogOption),
+			// 				typeof(UnityEngine.Object),
+			// 				typeof(String),
+			// 				typeof(System.Object[])
+			// 			});
+			// #endif
 		}
 		#endregion Constructors
 		
@@ -127,23 +129,25 @@
 		{
 			if (!IGLogHandlerInterface.IsLogAllowed(channel, logType)) return;
 			
-#if UNITY_EDITOR
-			if (FormatMethodInfo != null)
-			{
-				FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
-				{
-					Convert.ToLogType(logType),
-					logOptions,
-					context,
-					FormatMessageForUnityConsole(logType, K.DefaultChan, context, format, caller, args),
-					new object[] { }
-				});	
-			}
-			else
-			{
-				GDebug.DefaultUnityLogHandler.LogFormat(Convert.ToLogType(logType), context, format, args);
-			}
-#endif
+// #if UNITY_EDITOR
+// 			if (FormatMethodInfo != null)
+// 			{
+// 				FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
+// 				{
+// 					Convert.ToLogType(logType),
+// 					logOptions,
+// 					context,
+// 					FormatMessageForUnityConsole(logType, K.DefaultChan, context, format, caller, args),
+// 					new object[] { }
+// 				});	
+// 			}
+// 			else
+// 			{
+// 				GDebug.DefaultUnityLogHandler.LogFormat(Convert.ToLogType(logType), context, format, args);
+// 			}
+// #endif
+			var debugLogIHandler = InternalWrapper.GetDebugLogHandler();
+			debugLogIHandler.LogFormat(Convert.ToLogType(logType), context, format, args);
 
 			for (int i = 0; i < _logHandlers.Count; i++)
 			{
@@ -167,22 +171,24 @@
 		{
 			if (!IGLogHandlerInterface.IsLogAllowed(K.DefaultChan, Convert.ToGLogType(logType))) return;
 			
-#if UNITY_EDITOR
-			if (FormatMethodInfo != null)
-			{
-				// FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
-				// {
-				// 	logType, LogOption.None, context, "{0}", new object[]
-				// 	{
-				// 		FormatMessageForUnityConsole(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, args)
-				// 	}
-				// });	
-			}
-			else
-			{
-				GDebug.DefaultUnityLogHandler.LogFormat(logType, context, format, args);
-			}
-#endif
+// #if UNITY_EDITOR
+// 			if (FormatMethodInfo != null)
+// 			{
+// 				// FormatMethodInfo.Invoke(GDebug.DefaultUnityLogHandler, new object[]
+// 				// {
+// 				// 	logType, LogOption.None, context, "{0}", new object[]
+// 				// 	{
+// 				// 		FormatMessageForUnityConsole(Convert.ToGLogType(logType), K.DefaultChan, context, format, null, args)
+// 				// 	}
+// 				// });	
+// 			}
+// 			else
+// 			{
+// 				GDebug.DefaultUnityLogHandler.LogFormat(logType, context, format, args);
+// 			}
+// #endif
+			var debugLogIHandler = InternalWrapper.GetDebugLogHandler();
+			debugLogIHandler.LogFormat(logType, context, format, args);
 
 			for (int i = 0; i < _logHandlers.Count; i++)
 			{
